@@ -1,0 +1,14 @@
+SELECT * FROM Instructor;
+#Insertar
+INSERT INTO Instructor(ins_id, lastname, firstname, city, country) VALUES (5,"Roman","Perez","Adi","CA"),(6,"Romanes","Pereza","Adid","CAS");
+SELECT * FROM Instructor
+#Actualizar
+UPDATE Instructor SET city="Toronto" WHERE firstname="Sandip";
+SELECT * FROM Instructor;
+#Actualizar
+UPDATE Instructor SET lastname="Ahujachange" WHERE firstname="Sandip";
+SELECT * FROM Instructor;
+SELECT * FROM Instructor;
+#Eliminar
+DELETE  FROM Instructor WHERE ins_id=1;
+SELECT * FROM Instructor
