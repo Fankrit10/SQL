@@ -1,0 +1,77 @@
+#Cuantos hay en la columna 3 que sean diferente de Activo
+SELECT COUNT(`COL 3`) FROM plugins WHERE ((`COL 3`)!="ACTIVE");
+SELECT * FROM plugins
+
+# Usando GROUP BY Y UN CONTADOR DE CADA UNO
+SELECT `COL 4`, COUNT(`COL 4`) AS CUANTOS FROM plugins GROUP BY `COL 4`;
+SELECT * FROM plugins
+
+#Uso de porcentaje para completar lo desconocido
+SELECT `COL 8` FROM plugins WHERE 	`COL 8` LIKE "M%";
+SELECT * FROM plugins
+
+#Anidar comodin
+SELECT 	`COL 9`FROM plugins WHERE `COL 9`LIKE "T%" OR `COL 9`LIKE "M%" ;
+SELECT * FROM plugins
+
+#Crear tabla de mascotas e insertar elemetos
+create table PETRESCUE (
+	ID INTEGER NOT NULL,
+	ANIMAL VARCHAR(20),
+	QUANTITY INTEGER,
+	COST DECIMAL(6,2),
+	RESCUEDATE DATE,
+	PRIMARY KEY (ID)
+	);
+-- Insert sample data into PETRESCUE table
+insert into PETRESCUE values 
+	(1,'Cat',9,450.09,'2018-05-29'),
+	(2,'Dog',3,666.66,'2018-06-01'),
+	(3,'Dog',1,100.00,'2018-06-04'),
+	(4,'Parrot',2,50.00,'2018-06-04'),
+	(5,'Dog',1,75.75,'2018-06-10'),
+	(6,'Hamster',6,60.60,'2018-06-11'),
+	(7,'Cat',1,44.44,'2018-06-11'),
+	(8,'Goldfish',24,48.48,'2018-06-14'),
+	(9,'Dog',2,222.22,'2018-06-15')
+	
+;
+
+#Calcular el costo total de los animales rescatados
+SELECT SUM(`COST`) AS `COSTO TOTA` FROM `PETRESCUE` 
+
+#Mostrar la cantidad máxima de rescatados
+SELECT MAX(QUANTITY) AS `MAXIMOS RESCATADOS` FROM PETRESCUE 
+
+#Calcular el costo promedio de todos los animales rescatados
+SELECT AVG(`COST`) AS `COSTO PROMEDIO`  FROM `PETRESCUE`
+
+#Costo promedio de solo los perros
+SELECT AVG(`COST`) AS `COSTO PROMEDIO PERROS`  FROM `PETRESCUE` WHERE `ANIMAL`="DOG"
+
+#Redondear costo de cada uno
+SELECT ROUND(COST) AS `REDONDEO` FROM PETRESCUE
+
+#Longitud de nombres
+SELECT ANIMAL, LENGTH(`ANIMAL`) AS `LONGITUD DEL NOMBRE`FROM PETRESCUE
+
+#Mostrar en mayuscula
+SELECT UCASE(`ANIMAL`) FROM PETRESCUE
+
+#Mostrar en mayuscula sin duplicados
+SELECT DISTINCT(UCASE(`ANIMAL`)) FROM PETRESCUE
+
+#mostrar información pero buscando gatos en minuscula
+SELECT * FROM PETRESCUE WHERE LCASE(`ANIMAL`)=LCASE("CAT")
+
+# Dia de la semana de los rescatados
+SELECT `ANIMAL`, DAY(RESCUEDATE) AS `DIA` FROM PETRESCUE
+
+#Numero de rescatados en Mayo
+SELECT `ANIMAL`, QUANTITY FROM PETRESCUE WHERE MONTH(RESCUEDATE)=05
+
+#Los rescatados el 14 de cualquier mes
+SELECT `ANIMAL`, QUANTITY FROM PETRESCUE WHERE DAY(RESCUEDATE)=14
+
+#fECHA DE RESCATA VS LA ACTUAL
+select (CURRENT DATE - RESCUEDATE) from PETRESCUE;
