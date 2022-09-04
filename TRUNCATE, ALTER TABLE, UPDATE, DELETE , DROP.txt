@@ -1,0 +1,41 @@
+# Eliminar tablas existentes y crear nueva tabla con un registro
+DROP TABLE empleados;
+CREATE TABLE empleados (
+	nombre char(20),
+    edad int
+);
+INSERT INTO empleados(nombre,edad) VALUES ("Juan",22);
+SELECT * FROM empleados
+
+CREATE TABLE colegios (
+    id INT, 
+    nombre char(20));
+SELECT * FROM colegios 
+
+#iIngresar valores de prueba
+INSERT INTO colegios (id,nombre) VALUES (1,"francisco");
+SELECT * FROM colegios
+
+#Alterar los nombres de la columnas
+ALTER TABLE empleados
+RENAME COLUMN new_column_name TO edad;
+
+#Truncar la tabla o borrar los datos
+TRUNCATE empleados;
+SELECT* FROM empleados
+
+# Pruebas con tablas de instructor
+SELECT * FROM Instructor;
+#Insertar
+INSERT INTO Instructor(ins_id, lastname, firstname, city, country) VALUES (5,"Roman","Perez","Adi","CA"),(6,"Romanes","Pereza","Adid","CAS");
+SELECT * FROM Instructor
+#Actualizar
+UPDATE Instructor SET city="Toronto" WHERE firstname="Sandip";
+SELECT * FROM Instructor;
+#Actualizar
+UPDATE Instructor SET lastname="Ahujachange" WHERE firstname="Sandip";
+SELECT * FROM Instructor;
+SELECT * FROM Instructor;
+#Eliminar
+DELETE  FROM Instructor WHERE ins_id=1;
+SELECT * FROM Instructor
