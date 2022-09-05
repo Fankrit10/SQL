@@ -1,0 +1,26 @@
+#Promedio de los salarios
+SELECT AVG(`SALARY`) AS `PROMEDIO` FROM EMPLOYEES
+
+#Salarios que sean menores del promedio
+SELECT AVG(`SALARY`) AS `PROMEDIO` FROM EMPLOYEES;
+SELECT F_NAME, SALARY FROM EMPLOYEES WHERE SALARY<(SELECT AVG(`SALARY`) AS `PROMEDIO` FROM EMPLOYEES)
+
+#Seleccionar empleados con columna de salario maximo para todos
+select EMP_ID, SALARY, ( select MAX(SALARY) from EMPLOYEES ) AS `MAX_SALARY` from EMPLOYEES;
+
+#Consulta de todo a traves de subconsulta
+select * from ( select EMP_ID, F_NAME, L_NAME, DEP_ID from EMPLOYEES) AS EMP4ALL;
+
+#Traer información de empleados cuyos empleos esten en la tabla jobs
+SELECT F_NAME,JOB_ID FROM EMPLOYEES,JOBS WHERE EMPLOYEES.JOB_ID=JOBS.JOB_IDENT;
+select * from EMPLOYEES where JOB_ID IN (select JOB_IDENT from JOBS);
+
+#Empleados que sean de Jr Designer
+select * from employees where JOB_ID IN (select JOB_IDENT from jobs where JOB_TITLE= 'Jr. Designer');
+
+#Trabajos que ganen más de 70.000
+SELECT * FROM JOBS WHERE JOBS.JOB_IDENT IN (SELECT EMPLOYEES.JOB_ID FROM EMPLOYEES WHERE SALARY>70000)
+
+#Empleos cuyos integrantes cumplan despues de 1976
+select JOB_TITLE, MIN_SALARY,MAX_SALARY,JOB_IDENT from jobs where JOB_IDENT IN (select JOB_ID from employees where YEAR(B_DATE)>1976 );
+
