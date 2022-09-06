@@ -24,3 +24,15 @@ SELECT * FROM JOBS WHERE JOBS.JOB_IDENT IN (SELECT EMPLOYEES.JOB_ID FROM EMPLOYE
 #Empleos cuyos integrantes cumplan despues de 1976
 select JOB_TITLE, MIN_SALARY,MAX_SALARY,JOB_IDENT from jobs where JOB_IDENT IN (select JOB_ID from employees where YEAR(B_DATE)>1976 );
 
+#Uso de IN
+SELECT* FROM EMPLOYEES WHERE EMPLOYEES.F_NAME IN ("Alice","John");
+
+#Seleccionar todos de la tabla empleados y Jobs
+SELECT * FROM EMPLOYEES,JOBS WHERE EMPLOYEES.JOB_ID=JOBS.JOB_IDENT;
+
+#Seleccionar solo los empleados y trabajos con Id del empleado, nombre, titulo del trabajo
+SELECT EMPLOYEES.EMP_ID,EMPLOYEES.F_NAME,JOBS.JOB_TITLE FROM EMPLOYEES E,JOBS J WHERE EMPLOYEES.JOB_ID=JOBS.JOB_IDENT;
+
+#La misma sentencia anterior pero con Alias
+SELECT E.EMP_ID,E.F_NAME,J.JOB_TITLE FROM EMPLOYEES E,JOBS J WHERE E.JOB_ID=J.JOB_IDENT;
+
